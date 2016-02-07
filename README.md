@@ -4,10 +4,17 @@ Very simple command line web crawler with Crystal (http://crystal-lang.org/)
 
 ## Requirements
 
-- [Crsytal](http://crystal-lang.org/) >= 0.10.0
-- [Rake](https://github.com/ruby/rake) >= 10.4.0
+- [Crsytal](http://crystal-lang.org/) >= 0.11.0
 
 ## Installation
+
+### Homebrew
+
+```bash
+$ brew install muniere/triv/castor
+```
+
+### Manual
 
 ```bash
 # clone
