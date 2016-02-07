@@ -49,7 +49,7 @@ class Application
   end
 end
 
-require "./wwalk/*"
+require "./castor/*"
 
 #
 # Run application

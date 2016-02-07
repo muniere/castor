@@ -1,6 +1,6 @@
-#compdef wwalk
+#compdef castor
 
-function __wwalk_subcommands() {
+function __castor_subcommands() {
   local subcommands=(
     'index:Index URIs in page'
     'crawl:Index and download URIs in page'
@@ -10,21 +10,21 @@ function __wwalk_subcommands() {
   _describe "subommands" subcommands
 }
 
-function __wwalk_arguments() {
+function __castor_arguments() {
   subcommand="$1"
 
   case $subcommand in
     (index)
-      __wwalk_index && ret=0
+      __castor_index && ret=0
       ;;
     (crawl)
-      __wwalk_crawl && ret=0
+      __castor_crawl && ret=0
       ;;
   esac
 }
 
-function __wwalk_index() {
-  local focus=$(__wwalk_focus)
+function __castor_index() {
+  local focus=$(__castor_focus)
   _arguments -C \
     "($focus)--href-text[Focus on hrefs of texts]" \
     "($focus)--href-image[Focus on hrefs of images]" \
@@ -36,8 +36,8 @@ function __wwalk_index() {
     '(-)*::URL:_urls'
 }
 
-function __wwalk_crawl() {
-  local focus=$(__wwalk_focus)
+function __castor_crawl() {
+  local focus=$(__castor_focus)
   _arguments -C \
     "($focus)--href-text[Focus on hrefs of texts]" \
     "($focus)--href-image[Focus on hrefs of images]" \
@@ -54,7 +54,7 @@ function __wwalk_crawl() {
     
 }
 
-function __wwalk_focus() {
+function __castor_focus() {
   local focus=(
     '--href-text'
     '--href-image'
@@ -65,7 +65,7 @@ function __wwalk_focus() {
   echo $focus
 }
 
-function _wwalk() {
+function _castor() {
   local context curcontext="$curcontext" state line
   typeset -A opt_args
   local ret=1
@@ -77,10 +77,10 @@ function _wwalk() {
 
   case $state in
     (subcommands)
-      __wwalk_subcommands && ret=0 
+      __castor_subcommands && ret=0 
       ;;
     (arguments)
-      __wwalk_arguments $words[1] && ret=0
+      __castor_arguments $words[1] && ret=0
       ;;
   esac
   

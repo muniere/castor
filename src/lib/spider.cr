@@ -242,7 +242,7 @@ class Spider::Worker
   #
   # Get content of URI
   #
-  def get(uri : String | URI) : HTTP::Response
+  def get(uri : String | URI) : HTTP::Client::Response
 
     if @locations.includes?(uri.to_s)
       exception = Exception.new("Worker found redirect loop")

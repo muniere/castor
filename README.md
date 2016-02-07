@@ -1,6 +1,6 @@
-# wwalk
+# castor
 
-Very simple command line web walker with Crystal (http://crystal-lang.org/)
+Very simple command line web crawler with Crystal (http://crystal-lang.org/)
 
 ## Requirements
 
@@ -11,10 +11,10 @@ Very simple command line web walker with Crystal (http://crystal-lang.org/)
 
 ```bash
 # clone
-$ git clone git@github.com:muniere/wwalk.git
+$ git clone git@github.com:muniere/castor.git
 
 # install
-$ cd wwalk
+$ cd castor
 $ ./configure --prefix=/usr/local
 $ rake && rake install
 
@@ -28,36 +28,36 @@ $ rake && rake link
 
 ```bash
 # default
-$ wwalk index http://www.example.com/
+$ castor index http://www.example.com/
 
 # index only links of text
-$ wwalk index --href-text http://www.example.com/
+$ castor index --href-text http://www.example.com/
 
 # index only links of image
-$ wwalk index --href-image http://www.example.com/
+$ castor index --href-image http://www.example.com/
 
 # index only images
-$ wwalk index --image http://www.example.com/
+$ castor index --image http://www.example.com/
 
 # index only scripts
-$ wwalk index --script http://www.example.com/
+$ castor index --script http://www.example.com/
 ```
 
 ### Crawl links in URL
 
 ```bash
 # default
-$ wwalk crawl http://www.example.com/
+$ castor crawl http://www.example.com/
 
 # crawl only images
-$ wwalk crawl --image http://www.example.com/
+$ castor crawl --image http://www.example.com/
 
 # crawl with gieven concurrency
-$ wwalk crawl --concurrency=10 http://www.example.com/
+$ castor crawl --concurrency=10 http://www.example.com/
 
 # grep uris of contents
-$ wwalk crawl --image --grep="foobar.*\.jpg" http://www.example.com/
+$ castor crawl --image --grep="foobar.*\.jpg" http://www.example.com/
 
 # dry run
-$ wwalk crawl --script --dry-run http://www.example.com/
+$ castor crawl --script --dry-run http://www.example.com/
 ```
