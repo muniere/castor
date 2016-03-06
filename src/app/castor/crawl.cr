@@ -128,14 +128,14 @@ class Application::CrawlCommand < Application::Command
   struct Context
   
     # args
-    property uris :: Array(URI)
+    property uris : Array(URI)
   
     # opts
-    property options :: Spider::DownloadOptions
-    property focus   :: Spider::Focus
-    property grep    :: Regex?
-    property logger  :: Logger
-    property verbose :: Int
+    property options : Spider::DownloadOptions
+    property focus   : Spider::Focus
+    property grep    : Regex?
+    property logger  : Logger(IO::FileDescriptor)
+    property verbose : Int32
   
     #
     # Initialize context

@@ -22,8 +22,8 @@ class Spider
   #
   # Properties
   #
-  property regexes :: Hash(Symbol, Regex)
-  property logger  :: Logger?
+  property regexes : Hash(Symbol, Regex)
+  property logger  : Logger(IO::FileDescriptor)?
 
   #
   # Initialize
@@ -118,11 +118,11 @@ class Spider
   #
   class DownloadOptions
     
-    property prefix      :: String?
-    property overwrite   :: Bool
-    property dry_run     :: Bool
-    property concurrency :: Int
-    property blocking    :: Bool
+    property prefix      : String?
+    property overwrite   : Bool
+    property dry_run     : Bool
+    property concurrency : Int32
+    property blocking    : Bool
 
     def initialize(
       @prefix      = nil,
@@ -143,7 +143,7 @@ class Spider
   def download(uris : Array(URI), options = DownloadOptions.new)
 
     queue = Array(URI).new + uris
-    channel = Channel(Bool).new
+    channel = Channel::Unbuffered(Bool).new
 
     options.concurrency.times do |i|
       delay(i * 0.05) do
@@ -173,11 +173,11 @@ class Spider::Worker
   #
   # Properties
   #
-  getter id       :: Int
-  getter queue    :: Array(URI)
-  getter channel  :: Channel
-  getter options  :: DownloadOptions
-  getter logger   :: Logger?
+  getter id       : Int32
+  getter queue    : Array(URI)
+  getter channel  : Channel::Unbuffered(Bool)
+  getter options  : DownloadOptions
+  getter logger   : Logger(IO::FileDescriptor)?
 
   #
   # Initialize worker

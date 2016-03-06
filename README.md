@@ -4,7 +4,7 @@ Very simple command line web crawler with Crystal (http://crystal-lang.org/)
 
 ## Requirements
 
-- [Crsytal](http://crystal-lang.org/) >= 0.11.0
+- [Crsytal](http://crystal-lang.org/) >= 0.12.0
 
 ## Installation
 
@@ -68,3 +68,11 @@ $ castor crawl --image --grep="foobar.*\.jpg" http://www.example.com/
 # dry run
 $ castor crawl --script --dry-run http://www.example.com/
 ```
+
+## Origin
+
+Castor is originated from [genus of beavor](https://en.wikipedia.org/wiki/Beaver)
+
+## LICENSE
+
+Castor is available under the MIT license.

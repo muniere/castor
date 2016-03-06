@@ -117,13 +117,13 @@ class Application::IndexCommand < Application::Command
   struct Context 
 
     # args
-    property uris :: Array(URI)
+    property uris : Array(URI)
 
     # opts
-    property focus   :: Spider::Focus
-    property grep    :: Regex?
-    property logger  :: Logger
-    property verbose :: Int
+    property focus   : Spider::Focus
+    property grep    : Regex?
+    property logger  : Logger(IO::FileDescriptor)
+    property verbose : Int32
 
     #
     # Initialize context
