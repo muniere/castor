@@ -90,7 +90,7 @@ class Application::CrawlCommand < Application::Command
       exit 0
     end
 
-    argv = parser.parse(args) as Array(String)
+    parser.parse(args)
 
     # logger
     if context.verbose >= 2
@@ -106,11 +106,11 @@ class Application::CrawlCommand < Application::Command
     end
 
     # validate
-    if argv.empty?
+    if args.empty?
       raise ArgumentError.new(parser.to_s)
     end
 
-    context.uris = argv.map { |arg| arg.strip }.compact_map { |arg|
+    context.uris = args.map { |arg| arg.strip }.compact_map { |arg|
       begin
         next URI.parse(arg)
       rescue e
@@ -134,7 +134,7 @@ class Application::CrawlCommand < Application::Command
     property options : Spider::DownloadOptions
     property focus   : Spider::Focus
     property grep    : Regex?
-    property logger  : Logger(IO::FileDescriptor)
+    property logger  : Logger
     property verbose : Int32
   
     #

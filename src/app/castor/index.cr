@@ -85,7 +85,7 @@ class Application::IndexCommand < Application::Command
       exit 0
     end
 
-    argv = parser.parse(args) as Array(String)
+    argv = parser.parse(args) || [] of String
 
     # logger
     if context.verbose > 0
@@ -122,7 +122,7 @@ class Application::IndexCommand < Application::Command
     # opts
     property focus   : Spider::Focus
     property grep    : Regex?
-    property logger  : Logger(IO::FileDescriptor)
+    property logger  : Logger
     property verbose : Int32
 
     #

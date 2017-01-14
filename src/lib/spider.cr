@@ -23,7 +23,7 @@ class Spider
   # Properties
   #
   property regexes : Hash(Symbol, Regex)
-  property logger  : Logger(IO::FileDescriptor)?
+  property logger  : Logger?
 
   #
   # Initialize
@@ -50,7 +50,7 @@ class Spider
   # @param uri
   # @return URIs
   #
-  def index(uri : URI, focus = Href : Focus, grep = nil : Regex?) : Array(URI)
+  def index(uri : URI, focus : Focus = Focus::Href, grep : Regex? = nil) : Array(URI)
     case focus
     when Focus::Href
       self.index(uri, xpath: "//a/@href"    , grep: grep)
@@ -75,7 +75,7 @@ class Spider
   # @param regex
   # @return URIs
   #
-  protected def index(uri : URI, xpath = "//*" : String, regex = %r(.*) : Regex, grep = nil : Regex?) : Array(URI)
+  protected def index(uri : URI, xpath : String = "//*", regex : Regex = %r(.*), grep : Regex? = nil) : Array(URI)
 
     #
     # Fetch
@@ -177,7 +177,7 @@ class Spider::Worker
   getter queue    : Array(URI)
   getter channel  : Channel::Unbuffered(Bool)
   getter options  : DownloadOptions
-  getter logger   : Logger(IO::FileDescriptor)?
+  getter logger   : Logger?
 
   #
   # Initialize worker
@@ -204,10 +204,10 @@ class Spider::Worker
 
       filename = File.basename(uri.to_s)
 
-      if @options.prefix.nil?
-        filepath = filename
+      if prefix = @options.prefix
+        filepath = File.join(prefix, filename)
       else
-        filepath = File.join(@options.prefix as String, filename)
+        filepath = filename
       end
 
       if !@options.overwrite && File.exists?(filepath) 
